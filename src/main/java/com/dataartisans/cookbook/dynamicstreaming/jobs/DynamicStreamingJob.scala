@@ -57,7 +57,7 @@ object DynamicStreamingJob {
     (sc: SourceContext[Program[Impression, Long, Long]]) => {
 
       /**
-        * Key by TweetId, window into block of 3, and sum
+        * Key by TweetId, window into blocks of 10, and sum
         */
       sc.collect(
         Program(
@@ -71,7 +71,7 @@ object DynamicStreamingJob {
       )
 
       /**
-        * Key by userId, window into blocks of 6, and average
+        * Key by userId, window into blocks of 5, and average
         */
       sc.collect(
         Program(
