@@ -11,8 +11,12 @@ import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 /**
   * This program demonstrates how we can do "dynamic" streaming.  In this case
   * data is read from one input source and programs are read from another.  A program
-  * publishes how it needs the input stream keyed, as well as a window length, and a
-  * window function to run.
+  * publishes how it needs the input stream *keyed*, as well as a window length, and a
+  * window function to run.  This is just an example.  You would make this more dynamic than
+  * just simple window functions.  You'd expose all of TimelyFlatMap, for example.
+  *
+  * The idea here is this is how you would support many different users simultaneously that
+  * all want to run simple programs over the same input data stream.
   */
 object DynamicStreamingJob {
   def main(args: Array[String]) {
@@ -49,7 +53,7 @@ object DynamicStreamingJob {
 
   /**
     * This is an example of a stream of programs.  They do different things
-    * and they provide a keySeletor that indicates how they want the input stream
+    * and they provide a keySelector that indicates how they want the input stream
     * keyed.  These are generated at runtime!  In a real system they would be programs
     * streamed in -- maybe groovy or other dynamic JVM language.
     */
