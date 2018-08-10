@@ -1,11 +1,9 @@
 package com.dataartisans.cookbook.misc
 
-import org.apache.flink.api.common.functions.{RichReduceFunction, ReduceFunction}
 import org.apache.flink.api.common.state.ValueStateDescriptor
 import org.apache.flink.api.scala._
 import org.apache.flink.streaming.api.functions.source.SourceFunction.SourceContext
-import org.apache.flink.streaming.api.scala.function.WindowFunction
-import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
+import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.api.windowing.triggers.Trigger.TriggerContext
 import org.apache.flink.streaming.api.windowing.triggers.{Trigger, TriggerResult}
@@ -46,6 +44,8 @@ class ProcessingTimeTriggerWithPeriodicFirings(intervalMs: Long) extends Trigger
   override def onEventTime(time: Long, window: TimeWindow, ctx: TriggerContext): TriggerResult = {
     TriggerResult.CONTINUE
   }
+
+  override def clear(w: TimeWindow, triggerContext: TriggerContext): Unit = ???
 }
 
 object StateTracking {

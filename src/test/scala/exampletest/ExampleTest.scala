@@ -2,6 +2,7 @@ package exampletest
 
 import java.util.concurrent.TimeUnit
 
+import org.apache.flink.api.scala._
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.functions.AssignerWithPunctuatedWatermarks
 import org.apache.flink.streaming.api.functions.sink.SinkFunction
@@ -10,9 +11,7 @@ import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.watermark.Watermark
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows
 import org.apache.flink.streaming.api.windowing.time.Time
-import org.apache.flink.streaming.util.StreamingMultipleProgramsTestBase
-import org.apache.flink.api.scala._
-
+import org.apache.flink.test.util.AbstractTestBase
 import org.junit.Assert._
 import org.junit.Test
 
@@ -22,7 +21,7 @@ import scala.collection.mutable
   * Tests for Folds over windows. These also test whether OutputTypeConfigurable functions
   * work for windows, because FoldWindowFunction is OutputTypeConfigurable.
   */
-class ExampleTest extends StreamingMultipleProgramsTestBase {
+class ExampleTest extends AbstractTestBase {
 
   @Test
   def testReduceWindow(): Unit = {

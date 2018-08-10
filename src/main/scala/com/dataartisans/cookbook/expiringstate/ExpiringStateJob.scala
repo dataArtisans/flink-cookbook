@@ -87,5 +87,6 @@ object ExpiringStateJob {
       ???
     }
 
+    override def clear(w: GlobalWindow, triggerContext: TriggerContext): Unit = ???
   }
 }
